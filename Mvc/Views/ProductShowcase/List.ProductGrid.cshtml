@@ -1,0 +1,36 @@
+@model SitefinityWebApp.Mvc.Models.ProductShowcaseModel
+
+<div class="product-showcase @Model.CssClass">
+    @if (!string.IsNullOrEmpty(Model.Title))
+    {
+        <h2 class="showcase-title">@Model.Title</h2>
+    }
+    
+    <div class="row">
+        @foreach (var product in Model.Products)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    @if (!string.IsNullOrEmpty(product.ImageUrl))
+                    {
+                        <img src="@product.ImageUrl" class="card-img-top" alt="@product.Name" />
+                    }
+                    else
+                    {
+                        <div class="card-img-top bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
+                            <span>No Image</span>
+                        </div>
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <p class="card-text"><strong>$@product.Price.ToString("F2")</strong></p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-block">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

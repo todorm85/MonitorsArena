@@ -1190,6 +1190,10 @@
   <ItemGroup>
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
     <Compile Include="AzureWebRole.cs" />
+    <Compile Include="Mvc\Controllers\HelloWorldController.cs" />
+    <Compile Include="Mvc\Controllers\ProductShowcaseController.cs" />
+    <Compile Include="Mvc\Models\HelloWorldModel.cs" />
+    <Compile Include="Mvc\Models\ProductShowcaseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1298,6 +1302,10 @@
     <Content Include="AdminApp\assets\date-time-formats\date-time-formats.json" />
     <Content Include="AdminApp\63b8ee5b81329a75.ttf" />
     <Content Include="App_Data\GeoLocation\GeoLite2-City.mmdb" />
+    <Content Include="Mvc\Views\HelloWorld\Default.cshtml" />
+    <Content Include="Mvc\Views\ProductShowcase\List.ProductGrid.cshtml" />
+    <Content Include="Mvc\Views\ProductShowcase\List.ProductList.cshtml" />
+    <Content Include="Mvc\README.md" />
     <None Include="packages.config" />
     <Content Include="Sitefinity\ExternalLibraries\LibWebP\libwebp_x86.sflib" />
     <Content Include="Sitefinity\ExternalLibraries\LibWebP\libwebp_x64.sflib" />
