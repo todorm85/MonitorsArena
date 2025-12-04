@@ -9,7 +9,7 @@ namespace SitefinityWebApp.Mvc.Controllers
     [ControllerToolboxItem(
         Name = "ProductShowcase",
         Title = "Product Showcase",
-        SectionName = "MvcWidgets",
+        SectionName = "Custom Widgets",
         CssClass = "sfMvcIcn")]
     public class ProductShowcaseController : Controller
     {

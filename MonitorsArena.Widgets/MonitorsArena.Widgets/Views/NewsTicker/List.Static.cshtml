@@ -1,0 +1,149 @@
+@model MonitorsArena.Widgets.Models.NewsTickerModel
+
+<div class="news-ticker-static @Model.CssClass">
+    @if (!string.IsNullOrEmpty(Model.Title))
+    {
+        <div class="static-ticker-header">
+            <h3>@Model.Title</h3>
+        </div>
+    }
+    
+    @if (Model.NewsItems != null && Model.NewsItems.Any())
+    {
+        <div class="row">
+            @foreach (var item in Model.NewsItems)
+            {
+                <div class="col-md-6 col-lg-4 mb-3">
+                    <div class="news-card">
+                        <div class="news-card-header">
+                            <span class="news-category">@item.Category</span>
+                            <span class="news-time">@item.PublishedDate.ToString("MMM dd")</span>
+                        </div>
+                        <div class="news-card-body">
+                            @if (!string.IsNullOrEmpty(item.Url))
+                            {
+                                <h5 class="news-card-title">
+                                    <a href="@item.Url">@item.Headline</a>
+                                </h5>
+                            }
+                            else
+                            {
+                                <h5 class="news-card-title">@item.Headline</h5>
+                            }
+                            @if (!string.IsNullOrEmpty(item.Summary))
+                            {
+                                <p class="news-card-text">@item.Summary</p>
+                            }
+                        </div>
+                        @if (!string.IsNullOrEmpty(item.Url))
+                        {
+                            <div class="news-card-footer">
+                                <a href="@item.Url" class="btn btn-sm btn-outline-primary">Read More</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">No news items available.</div>
+    }
+</div>
+
+<style>
+    .news-ticker-static {
+        padding: 20px 0;
+    }
+    
+    .static-ticker-header {
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid #007bff;
+    }
+    
+    .static-ticker-header h3 {
+        margin: 0;
+        color: #2c3e50;
+        font-weight: 600;
+    }
+    
+    .news-card {
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background: white;
+    }
+    
+    .news-card:hover {
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        transform: translateY(-4px);
+    }
+    
+    .news-card-header {
+        padding: 12px 15px;
+        background: #f8f9fa;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .news-category {
+        background: #007bff;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.8em;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    
+    .news-time {
+        color: #6c757d;
+        font-size: 0.85em;
+    }
+    
+    .news-card-body {
+        padding: 15px;
+        flex: 1;
+    }
+    
+    .news-card-title {
+        font-size: 1.1em;
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+    
+    .news-card-title a {
+        color: #2c3e50;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    
+    .news-card-title a:hover {
+        color: #007bff;
+    }
+    
+    .news-card-text {
+        color: #6c757d;
+        font-size: 0.9em;
+        margin-bottom: 0;
+        line-height: 1.5;
+    }
+    
+    .news-card-footer {
+        padding: 15px;
+        border-top: 1px solid #dee2e6;
+        background: #f8f9fa;
+    }
+    
+    .news-card-footer .btn {
+        font-weight: 600;
+    }
+</style>

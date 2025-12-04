@@ -1143,10 +1143,10 @@
     <Content Include="App_Data\RadSpell\de-DE.tdf" />
     <Content Include="App_Data\RadSpell\en-US.tdf" />
     <Content Include="App_Data\RadSpell\fr-FR.tdf" />
-    <Content Include="Mvc\Controllers\readme.txt" />
-    <Content Include="Mvc\Models\readme.txt" />
-    <Content Include="Mvc\Views\readme.txt" />
-    <Content Include="Mvc\Views\Shared\readme.txt" />
+    <Content Include="Controllers\readme.txt" />
+    <Content Include="Models\readme.txt" />
+    <Content Include="Views\readme.txt" />
+    <Content Include="Views\Shared\readme.txt" />
     <Content Include="ResourcePackages\Bootstrap4\assets\dist\css\main.css" />
     <Content Include="ResourcePackages\Bootstrap4\assets\dist\css\main.min.css" />
     <Content Include="ResourcePackages\Bootstrap4\assets\dist\js\bootstrap.min.js" />
@@ -1190,10 +1190,10 @@
   <ItemGroup>
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
     <Compile Include="AzureWebRole.cs" />
-    <Compile Include="Mvc\Controllers\HelloWorldController.cs" />
-    <Compile Include="Mvc\Controllers\ProductShowcaseController.cs" />
-    <Compile Include="Mvc\Models\HelloWorldModel.cs" />
-    <Compile Include="Mvc\Models\ProductShowcaseModel.cs" />
+    <Compile Include="Controllers\HelloWorldController.cs" />
+    <Compile Include="Controllers\ProductShowcaseController.cs" />
+    <Compile Include="Models\HelloWorldModel.cs" />
+    <Compile Include="Models\ProductShowcaseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1302,18 +1302,14 @@
     <Content Include="AdminApp\assets\date-time-formats\date-time-formats.json" />
     <Content Include="AdminApp\63b8ee5b81329a75.ttf" />
     <Content Include="App_Data\GeoLocation\GeoLite2-City.mmdb" />
-    <Content Include="Mvc\Views\HelloWorld\Default.cshtml" />
-    <Content Include="Mvc\Views\ProductShowcase\List.ProductGrid.cshtml" />
-    <Content Include="Mvc\Views\ProductShowcase\List.ProductList.cshtml" />
-    <Content Include="Mvc\README.md" />
+    <Content Include="Views\HelloWorld\Default.cshtml" />
+    <Content Include="Views\ProductShowcase\List.ProductGrid.cshtml" />
+    <Content Include="Views\ProductShowcase\List.ProductList.cshtml" />
     <None Include="packages.config" />
     <Content Include="Sitefinity\ExternalLibraries\LibWebP\libwebp_x86.sflib" />
     <Content Include="Sitefinity\ExternalLibraries\LibWebP\libwebp_x64.sflib" />
     <Content Include="Sitefinity\ExternalLibraries\LibWebP\libsharpyuv_x86.sflib" />
     <Content Include="Sitefinity\ExternalLibraries\LibWebP\libsharpyuv_x64.sflib" />
-    <Content Include="SampleTemplate.cshtml">
-      <Generator>RazorGenerator</Generator>
-    </Content>
     <Content Include="ResourcePackages\Bootstrap5\README.md" />
     <Content Include="ResourcePackages\Bootstrap5\razorgenerator.directives" />
     <Content Include="ResourcePackages\Bootstrap5\package.json" />
@@ -1601,6 +1597,12 @@
     <Analyzer Include="packages\AWSSDK.DynamoDBv2.3.7.3.34\analyzers\dotnet\cs\AWSSDK.DynamoDBv2.CodeAnalysis.dll" />
     <Analyzer Include="packages\AWSSDK.S3.3.7.9.2\analyzers\dotnet\cs\AWSSDK.S3.CodeAnalysis.dll" />
     <Analyzer Include="packages\AWSSDK.SQS.3.7.2.55\analyzers\dotnet\cs\AWSSDK.SQS.CodeAnalysis.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="MonitorsArena.Widgets\MonitorsArena.Widgets\MonitorsArena.Widgets.csproj">
+      <Project>{2637f935-0284-40cc-b7e6-56e5fb307fdb}</Project>
+      <Name>MonitorsArena.Widgets</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

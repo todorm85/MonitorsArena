@@ -8,7 +8,7 @@ namespace SitefinityWebApp.Mvc.Controllers
     [ControllerToolboxItem(
         Name = "HelloWorld",
         Title = "Hello World",
-        SectionName = "MvcWidgets",
+        SectionName = "Custom Widgets",
         CssClass = "sfMvcIcn")]
     public class HelloWorldController : Controller
     {

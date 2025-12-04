@@ -1,0 +1,95 @@
+@model MonitorsArena.Widgets.Models.NewsTickerModel
+
+<div class="news-ticker-widget @Model.CssClass">
+    @if (!string.IsNullOrEmpty(Model.Title))
+    {
+        <h3 class="news-ticker-title">@Model.Title</h3>
+    }
+    
+    <div class="news-ticker-container" data-auto-scroll="@Model.AutoScroll.ToString().ToLower()" data-interval="@Model.RefreshInterval">
+        @if (Model.NewsItems != null && Model.NewsItems.Any())
+        {
+            <ul class="news-ticker-list">
+                @foreach (var item in Model.NewsItems)
+                {
+                    <li class="news-ticker-item">
+                        <span class="news-date">@item.PublishedDate.ToString("MMM dd, yyyy")</span>
+                        @if (!string.IsNullOrEmpty(item.Category))
+                        {
+                            <span class="badge badge-secondary">@item.Category</span>
+                        }
+                        @if (!string.IsNullOrEmpty(item.Url))
+                        {
+                            <a href="@item.Url" class="news-headline">@item.Headline</a>
+                        }
+                        else
+                        {
+                            <strong class="news-headline">@item.Headline</strong>
+                        }
+                        @if (!string.IsNullOrEmpty(item.Summary))
+                        {
+                            <p class="news-summary">@item.Summary</p>
+                        }
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p class="text-muted">No news items available.</p>
+        }
+    </div>
+</div>
+
+<style>
+    .news-ticker-widget {
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 4px;
+    }
+    
+    .news-ticker-title {
+        margin-bottom: 15px;
+        color: #333;
+        font-weight: 600;
+    }
+    
+    .news-ticker-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .news-ticker-item {
+        padding: 15px;
+        margin-bottom: 10px;
+        background: white;
+        border-left: 4px solid #007bff;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .news-date {
+        color: #6c757d;
+        font-size: 0.9em;
+        margin-right: 10px;
+    }
+    
+    .news-headline {
+        font-weight: 600;
+        color: #007bff;
+        text-decoration: none;
+        margin-left: 10px;
+    }
+    
+    .news-headline:hover {
+        text-decoration: underline;
+    }
+    
+    .news-summary {
+        margin-top: 8px;
+        margin-bottom: 0;
+        color: #495057;
+        font-size: 0.95em;
+    }
+</style>

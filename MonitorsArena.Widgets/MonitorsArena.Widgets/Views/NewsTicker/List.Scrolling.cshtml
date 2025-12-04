@@ -1,0 +1,125 @@
+@model MonitorsArena.Widgets.Models.NewsTickerModel
+
+<div class="news-ticker-scrolling @Model.CssClass">
+    @if (!string.IsNullOrEmpty(Model.Title))
+    {
+        <div class="ticker-header">
+            <span class="ticker-label">@Model.Title</span>
+        </div>
+    }
+    
+    @if (Model.NewsItems != null && Model.NewsItems.Any())
+    {
+        <div class="ticker-wrap">
+            <div class="ticker-move" data-auto-scroll="@Model.AutoScroll.ToString().ToLower()" data-interval="@Model.RefreshInterval">
+                @foreach (var item in Model.NewsItems)
+                {
+                    <div class="ticker-item">
+                        <span class="ticker-badge">@item.Category</span>
+                        @if (!string.IsNullOrEmpty(item.Url))
+                        {
+                            <a href="@item.Url" class="ticker-link">@item.Headline</a>
+                        }
+                        else
+                        {
+                            <span class="ticker-text">@item.Headline</span>
+                        }
+                        <span class="ticker-time">@item.PublishedDate.ToString("HH:mm")</span>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <p class="text-muted text-center">No news items available.</p>
+    }
+</div>
+
+<style>
+    .news-ticker-scrolling {
+        background: #2c3e50;
+        color: white;
+        padding: 15px 0;
+        overflow: hidden;
+    }
+    
+    .ticker-header {
+        display: inline-block;
+        background: #e74c3c;
+        padding: 10px 20px;
+        margin-right: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    
+    .ticker-wrap {
+        display: inline-block;
+        width: calc(100% - 200px);
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .ticker-move {
+        display: flex;
+        animation: scroll-left 30s linear infinite;
+    }
+    
+    .ticker-move:hover {
+        animation-play-state: paused;
+    }
+    
+    .ticker-item {
+        display: inline-flex;
+        align-items: center;
+        white-space: nowrap;
+        margin-right: 50px;
+    }
+    
+    .ticker-badge {
+        background: #3498db;
+        padding: 4px 12px;
+        border-radius: 3px;
+        margin-right: 15px;
+        font-size: 0.85em;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+    
+    .ticker-link {
+        color: white;
+        text-decoration: none;
+        margin-right: 15px;
+        transition: color 0.3s;
+    }
+    
+    .ticker-link:hover {
+        color: #3498db;
+        text-decoration: none;
+    }
+    
+    .ticker-text {
+        margin-right: 15px;
+    }
+    
+    .ticker-time {
+        color: #95a5a6;
+        font-size: 0.9em;
+    }
+    
+    @@keyframes scroll-left {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+</style>
+
+<script>
+    (function() {
+        var ticker = document.querySelector('.ticker-move');
+        if (ticker && ticker.dataset.autoScroll === 'true') {
+            // Clone items for seamless loop
+            var items = ticker.innerHTML;
+            ticker.innerHTML = items + items;
+        }
+    })();
+</script>
