@@ -1,0 +1,233 @@
+@model SitefinityWebApp.Mvc.Models.ProductExportModel
+
+<div class="product-export-widget">
+    @if (!string.IsNullOrEmpty(Model.Title))
+    {
+        <h3 class="export-title">@Model.Title</h3>
+    }
+    
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <p class="export-message">@Model.Message</p>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <strong>Error:</strong> @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <div class="export-info">
+        <div class="info-badge">
+            <span class="info-label">Total Products:</span>
+            <span class="info-value">@Model.TotalProductsCount</span>
+        </div>
+        <div class="info-badge">
+            <span class="info-label">Format:</span>
+            <span class="info-value">CSV (ZIP)</span>
+        </div>
+        @if (Model.IncludeHeaders)
+        {
+            <div class="info-badge">
+                <span class="info-label">Headers:</span>
+                <span class="info-value">Included</span>
+            </div>
+        }
+    </div>
+
+    <div class="export-actions">
+        <a href="@Url.Action("Download")" class="@Model.ButtonCssClass" download>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="icon-download" viewBox="0 0 16 16">
+                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+            </svg>
+            @Model.ButtonText
+        </a>
+    </div>
+
+    <div class="export-details">
+        <h4>Export Details</h4>
+        <ul>
+            <li><strong>File Name:</strong> @(Model.ExportFileName)_[timestamp].zip</li>
+            <li><strong>Content:</strong> @(Model.ExportFileName).csv</li>
+            <li><strong>Columns:</strong> Name, Description, Price, Image URL</li>
+            <li><strong>Encoding:</strong> UTF-8</li>
+            <li><strong>Compression:</strong> ZIP (Optimal)</li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    .product-export-widget {
+        padding: 30px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 12px;
+        color: white;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .export-title {
+        margin: 0 0 15px 0;
+        font-size: 2em;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .export-message {
+        margin-bottom: 25px;
+        font-size: 1.1em;
+        opacity: 0.95;
+        line-height: 1.6;
+    }
+
+    .export-info {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+    }
+
+    .info-badge {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 12px 20px;
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .info-label {
+        font-weight: 600;
+        opacity: 0.9;
+    }
+
+    .info-value {
+        font-weight: 700;
+        font-size: 1.1em;
+    }
+
+    .export-actions {
+        margin-bottom: 30px;
+    }
+
+    .export-actions a {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 35px;
+        font-size: 1.1em;
+        font-weight: 600;
+        text-decoration: none;
+        background: white;
+        color: #667eea;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .export-actions a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        text-decoration: none;
+        color: #5568d3;
+    }
+
+    .export-actions a:active {
+        transform: translateY(0);
+    }
+
+    .icon-download {
+        transition: transform 0.3s ease;
+    }
+
+    .export-actions a:hover .icon-download {
+        transform: translateY(2px);
+    }
+
+    .export-details {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 20px;
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .export-details h4 {
+        margin: 0 0 15px 0;
+        font-size: 1.3em;
+        font-weight: 600;
+    }
+
+    .export-details ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .export-details li {
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        font-size: 0.95em;
+    }
+
+    .export-details li:last-child {
+        border-bottom: none;
+    }
+
+    .export-details strong {
+        font-weight: 600;
+        margin-right: 8px;
+    }
+
+    .alert {
+        margin-bottom: 20px;
+    }
+
+    /* Responsive design */
+    @@media (max-width: 768px) {
+        .product-export-widget {
+            padding: 20px;
+        }
+
+        .export-title {
+            font-size: 1.5em;
+        }
+
+        .export-info {
+            flex-direction: column;
+        }
+
+        .info-badge {
+            width: 100%;
+        }
+
+        .export-actions a {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+    /* Animation for download button */
+    @@keyframes pulse {
+        0% {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        50% {
+            box-shadow: 0 6px 25px rgba(255, 255, 255, 0.4);
+        }
+        100% {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    .export-actions a {
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    .export-actions a:hover {
+        animation: none;
+    }
+</style>

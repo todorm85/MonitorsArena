@@ -1194,6 +1194,8 @@
     <Compile Include="Controllers\ProductShowcaseController.cs" />
     <Compile Include="Models\HelloWorldModel.cs" />
     <Compile Include="Models\ProductShowcaseModel.cs" />
+    <Compile Include="Controllers\ProductExportController.cs" />
+    <Compile Include="Models\ProductExportModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1305,6 +1307,10 @@
     <Content Include="Views\HelloWorld\Default.cshtml" />
     <Content Include="Views\ProductShowcase\List.ProductGrid.cshtml" />
     <Content Include="Views\ProductShowcase\List.ProductList.cshtml" />
+    <Content Include="Views\ProductExport\Default.cshtml" />
+    <Content Include="Views\ProductExport\Simple.cshtml" />
+    <Content Include="Mvc\PRODUCT_EXPORT_WIDGET.md" />
+    <Content Include="Mvc\PRODUCT_EXPORT_SUMMARY.md" />
     <None Include="packages.config" />
     <Content Include="Sitefinity\ExternalLibraries\LibWebP\libwebp_x86.sflib" />
     <Content Include="Sitefinity\ExternalLibraries\LibWebP\libwebp_x64.sflib" />

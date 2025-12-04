@@ -1,0 +1,104 @@
+@model SitefinityWebApp.Mvc.Models.ProductExportModel
+
+<div class="product-export-simple">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">
+                <i class="bi bi-file-earmark-arrow-down"></i>
+                @Model.Title
+            </h4>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <p class="card-text">@Model.Message</p>
+            }
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @TempData["ErrorMessage"]
+                </div>
+            }
+
+            <div class="export-stats mb-3">
+                <span class="badge bg-info text-dark">
+                    @Model.TotalProductsCount Products
+                </span>
+                <span class="badge bg-secondary">
+                    CSV Format
+                </span>
+                <span class="badge bg-success">
+                    ZIP Archive
+                </span>
+            </div>
+
+            <a href="@Url.Action("Download")" class="@Model.ButtonCssClass" download>
+                <i class="bi bi-download"></i>
+                @Model.ButtonText
+            </a>
+        </div>
+        <div class="card-footer text-muted">
+            <small>
+                File: @(Model.ExportFileName)_[timestamp].zip | 
+                Format: CSV with @(Model.IncludeHeaders ? "headers" : "no headers")
+            </small>
+        </div>
+    </div>
+</div>
+
+<style>
+    .product-export-simple {
+        margin: 20px 0;
+    }
+
+    .product-export-simple .card {
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .product-export-simple .card-header {
+        padding: 15px 20px;
+    }
+
+    .product-export-simple .card-header h4 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .product-export-simple .card-body {
+        padding: 20px;
+    }
+
+    .export-stats {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .export-stats .badge {
+        padding: 8px 12px;
+        font-size: 0.9em;
+        font-weight: 500;
+    }
+
+    .product-export-simple .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .product-export-simple .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-export-simple .card-footer {
+        background: #f8f9fa;
+        padding: 12px 20px;
+    }
+</style>
